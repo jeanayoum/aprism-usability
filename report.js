@@ -139,11 +139,15 @@
     "@media print { .rp-noprint { display: none !important; } .page { padding: 24px; } }",
     // 인쇄, PDF — 섹션(rp-sec)마다 새 페이지. 첫 섹션(요약 타일)은 제목과 함께 1쪽에 둔다
     "@media print {",
-    "  @page { size: A4 landscape; margin: 12mm; }",
-    "  html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }",
-    "  #report.page { padding: 0; }",
+    // 용지 여백 0 — 회색 배경이 쪽 전체를 채우고, 카드는 화면처럼 회색 안쪽으로 들어간다(브라우저 머리글·바닥글도 안 찍힘)
+    "  @page { size: A4 landscape; margin: 0; }",
+    "  html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: #eef2f6; }",
+    "  #report.page { padding: 12mm 14mm 0; min-height: 0; }",
+    "  .rp { max-width: none; }",
     "  .rp-tip { display: none !important; }",
-    "  #rp-sum > .rp-sec ~ .rp-sec, #rp-one > .rp-sec ~ .rp-sec { break-before: page; page-break-before: always; margin-top: 0; }",
+    // 섹션마다 새 쪽. 위아래 여백은 섹션에 두고, 섹션이 여러 쪽으로 넘어가도 쪽마다 같은 여백(clone)
+    "  #rp-sum > .rp-sec ~ .rp-sec, #rp-one > .rp-sec ~ .rp-sec { break-before: page; page-break-before: always; margin-top: 0; padding-top: 12mm; }",
+    "  .rp-sec { padding-bottom: 10mm; -webkit-box-decoration-break: clone; box-decoration-break: clone; }",
     "  .rp-sec > h2, .rp-sec > .rp-sub, .rp-card h3, .cm-h { break-after: avoid; page-break-after: avoid; }",
     "  .rp-tile, .rp-grid2, .rp-grid3 > *, .pp-row, .lk-row, .rp-tbl tr, .rp-qa li, .one-info, .cm-main { break-inside: avoid; page-break-inside: avoid; }",
     "  .rp-card { overflow: visible !important; }",
