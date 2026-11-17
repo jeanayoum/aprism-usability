@@ -698,7 +698,9 @@
   // ================================================================
   // 답변 모음 구글 시트(백업이 쌓이는 시트) — 기록 화면, 리포트의 [구글 시트 열기]
   var SHEET_LINK = "https://docs.google.com/spreadsheets/d/1DxGK50IZOgngDIKqthJtNzzffVx6tLJLFD9rRBqosDw/edit?gid=1443028626#gid=1443028626";
-  var CLOUD_URL = "https://script.google.com/macros/s/AKfycbyGqpeCpNStt-i9y3hSfZjc4LlUj9RvcI__XcvLnJWKM2kgVE0K3lVcsCnHaZIUsbpg/exec";
+  // jeanayoum 복사본: 원본 소유자 Apps Script 와의 연결을 끊음(보내기, 불러오기, 지우기 모두 꺼짐). 기록은 [JSON 가져오기]로만 넣는다.
+  // 원래 주소: https://script.google.com/macros/s/AKfycbyGqpeCpNStt-i9y3hSfZjc4LlUj9RvcI__XcvLnJWKM2kgVE0K3lVcsCnHaZIUsbpg/exec
+  var CLOUD_URL = "";
   var Cloud = (function () {
     var busy = false, n = 0;
     function url() { try { return localStorage.getItem("aprism-ut-cloud") || CLOUD_URL; } catch (e) { return CLOUD_URL; } }
@@ -2222,6 +2224,6 @@
   if (location.hash === "#tour") { history.replaceState(null, "", location.pathname); startTest("미리보기", null, true); }
 })();
 </script>
-<script src="report.js?v=20261110b"></script>
+<script src="report.js?v=20261117a"></script>
 </body>
 </html>

@@ -136,7 +136,18 @@
     ".cm-thumb[aria-pressed='true'] { border-color: var(--rp-blue); }",
     ".cm-thumb span { display: block; padding: 6px 4px 2px; font-size: 14px; color: var(--rp-ink-2); }",
     ".cm-thumb span b { color: var(--rp-ink); margin-right: 4px; }",
-    "@media print { .rp-noprint { display: none !important; } .page { padding: 24px; } }"
+    "@media print { .rp-noprint { display: none !important; } .page { padding: 24px; } }",
+    // 인쇄, PDF — 섹션(rp-sec)마다 새 페이지. 첫 섹션(요약 타일)은 제목과 함께 1쪽에 둔다
+    "@media print {",
+    "  @page { size: A4 landscape; margin: 12mm; }",
+    "  html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }",
+    "  #report.page { padding: 0; }",
+    "  .rp-tip { display: none !important; }",
+    "  #rp-sum > .rp-sec ~ .rp-sec, #rp-one > .rp-sec ~ .rp-sec { break-before: page; page-break-before: always; margin-top: 0; }",
+    "  .rp-sec > h2, .rp-sec > .rp-sub, .rp-card h3, .cm-h { break-after: avoid; page-break-after: avoid; }",
+    "  .rp-tile, .rp-grid2, .rp-grid3 > *, .pp-row, .lk-row, .rp-tbl tr, .rp-qa li, .one-info, .cm-main { break-inside: avoid; page-break-inside: avoid; }",
+    "  .rp-card { overflow: visible !important; }",
+    "}"
   ].join("\n");
   document.head.appendChild(css);
 
